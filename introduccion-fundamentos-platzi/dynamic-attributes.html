@@ -21,6 +21,7 @@
           };
         },
         template: `<img v-bind:src="imgName" :alt="imgName" v-bind:[attr]="width" />`, //el shortcut para "v-bind: " es " :
+        //v-bind:[attr]="width" crear atributos de manera dinamica
         //otra opcion <img v-bind="{'src':img, 'alt':img}">
       }).mount('#app');
     </script>
