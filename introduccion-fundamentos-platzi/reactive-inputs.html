@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script src="https://unpkg.com/vue@next"></script>
+    <div id="app"></div>
+
+    <script>
+      const vm = Vue.createApp({
+        data() {
+          return {
+            text: 'Hello vue',
+            text2: 'Hello vue 2',
+          };
+        },
+        methods: {
+          handleChange(e) {
+            this.text = e.target.value;
+          },
+        },
+        template: `<p>{{text}}</p>
+        <p> {{text2}} </p>
+        <input type="text" v-on:input="handleChange" v-bind:value="text" /> 
+        <input type="text" v-model="text2" /> 
+        `,
+        //v-on:change cuando se sale del input ejecuta la funcion
+        //v-on:input para escuchar los cambios en tiempo real
+
+        //alias
+        //v-on, :value="text"
+        //v-bind @input="handleChange"
+
+        //v-model para escuchar los cambios en tiempo real, hace lo "mismo" que @input="handleChange" :value="text"
+      }).mount('#app');
+    </script>
+  </body>
+</html>
