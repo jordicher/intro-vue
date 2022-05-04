@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      html,
+      body {
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      #app,
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+      }
+      button {
+        margin-top: 24px;
+        border: none;
+        background-color: white;
+        padding: 8px 24px;
+        border-radius: 12px;
+      }
+      .closed {
+        background-color: #eca1a6;
+      }
+      .open {
+        background-color: #b5e7a0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="https://unpkg.com/vue@next"></script>
+    <div id="app"></div>
+
+    <script>
+      const vm = Vue.createApp({
+        data() {
+          return {
+            message: 'Hola Vue',
+            textIsOpen: 'close',
+            isOpen: false,
+            styles: {
+              backgroundColor: '#e5e5e5',
+            },
+          };
+        },
+        watch: {
+          message(newValue, oldValue) {
+            console.log(newValue, oldValue);
+          },
+
+          isOpen(newValue) {
+            this.textIsOpen = newValue ? 'open' : 'close';
+            this.styles.backgroundColor = newValue ? '#b5e7a0' : '#e5e5e5'; //modficariamos los estilos
+          },
+        },
+        //opcion con estilos inline
+        /*    template: `
+        <div class="container" :style="styles">
+            <h2>{{message}}</h2>
+            <button @click="isOpen = !isOpen">{{textIsOpen}}</button>
+        </div>`, */
+        //opcion con clases
+        template: `
+        <div class="container" :class="{'open': isOpen, 'closed': !isOpen}">
+            <h2>{{message}}</h2>
+            <button @click="isOpen = !isOpen">{{textIsOpen}}</button>
+        </div>`,
+      }).mount('#app');
+
+      // :style="styles" --> para poner los estilos styles de data return
+      // :class="['open']" --> poner la clase open de los estilos del header
+    </script>
+  </body>
+</html>
