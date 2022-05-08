@@ -1,17 +1,21 @@
 <script>
-import {defineAsyncComponent} from 'vue'
+import { defineAsyncComponent } from "vue";
+import Menu from "./components/Menu.vue";
 
-const HelloWorld = defineAsyncComponent(() => import('./components/HelloWorld.vue'))
-
+const HelloWorld = defineAsyncComponent(() =>
+  import("./components/HelloWorld.vue")
+);
 
 export default {
   name: "App",
   components: {
     HelloWorld,
+    Menu,
   },
   data() {
     return {
       helloWorld: HelloWorld,
+      show: false,
     };
   },
 };
@@ -24,69 +28,31 @@ export default {
     </div>
   </header>
 
-<!--   <component :is="helloWorld"> </component>
- -->  <!-- se renderiza a partir de un componente dinamico, solo lo podemos hacer en componentes que ya esten diponibles -->
+  <nav>
+    <button @click="show = !show">Menu</button>
+    <transition name="fade">
+      <Menu v-show="show" />
+    </transition>
+    <!-- The difference is that an element with v-show will
+    always be rendered and remain in the DOM; v-show only toggles the display
+    CSS property of the element. -->
+  </nav>
+
+  <!--   <component :is="helloWorld"> </component>
+ -->
+  <!-- se renderiza a partir de un componente dinamico, solo lo podemos hacer en componentes que ya esten diponibles -->
 </template>
 
 <style>
 @import "./assets/base.css";
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
 }
 </style>
