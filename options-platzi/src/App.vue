@@ -1,28 +1,29 @@
-<script setup>
+<script>
 import HelloWorld from "./components/HelloWorld.vue";
-import TheWelcome from "./components/TheWelcome.vue";
+
+export default {
+  name: "App",
+  components: {
+    HelloWorld,
+  },
+  data() {
+    return {
+      helloWorld: HelloWorld,
+    };
+  },
+};
 </script>
 
 <template>
   <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="./assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
     <div class="wrapper">
-      <HelloWorld msg="You dida it!" />
+      <HelloWorld msg="You did it!" />
     </div>
   </header>
 
-  <main>
-    <TheWelcome />
-  </main>
+  <component :is="helloWorld"> </component>
+  <!-- se renderiza a partir de un componente dinamico, solo lo podemos hacer en componentes que ya esten diponibles -->
 </template>
-
 <style>
 @import "./assets/base.css";
 
