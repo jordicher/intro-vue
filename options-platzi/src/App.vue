@@ -1,5 +1,8 @@
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import {defineAsyncComponent} from 'vue'
+
+const HelloWorld = defineAsyncComponent(() => import('./components/HelloWorld.vue'))
+
 
 export default {
   name: "App",
@@ -21,9 +24,10 @@ export default {
     </div>
   </header>
 
-  <component :is="helloWorld"> </component>
-  <!-- se renderiza a partir de un componente dinamico, solo lo podemos hacer en componentes que ya esten diponibles -->
+<!--   <component :is="helloWorld"> </component>
+ -->  <!-- se renderiza a partir de un componente dinamico, solo lo podemos hacer en componentes que ya esten diponibles -->
 </template>
+
 <style>
 @import "./assets/base.css";
 
