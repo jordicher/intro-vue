@@ -15,6 +15,9 @@
     CSS property of the element. -->
   </nav>
 
+  <div>{{ baseUrl }}</div>
+  <!-- En caso de que la variable estuviera en el mixin y en el componente, cogeria la del componente -->
+
   <Modal />
 
   <!--   <component :is="helloWorld"> </component>
@@ -26,6 +29,7 @@
 import { defineAsyncComponent } from "vue";
 import Menu from "./components/Menu.vue";
 import Modal from "./components/Modal.vue";
+import base from "@/mixins/base"; //arroba es para iniciar desde la carpeta src
 
 const HelloWorld = defineAsyncComponent(() =>
   import("./components/HelloWorld.vue")
@@ -38,6 +42,7 @@ export default {
     Menu,
     Modal,
   },
+  mixins: [base],
   data() {
     return {
       helloWorld: HelloWorld,
@@ -49,28 +54,28 @@ export default {
 
   beforeCreate() {
     //código a ejecutar
-    console.log("beforeCreate", this.$data, this.$el);
+    console.log("beforeCreate", this.$data, this.$el); //object, null
   },
   /* 
       created se llama cuando la instancia ha terminado de procesar todas las opciones relacionados con el estado, como lo son: datos reactivos, propiedades computadas, métodos y observadores, pero aún no comienza la fase de montado y la función $el aún no esta disponible.
    */
   created() {
     //lógica a ejecutar
-    console.log("created", this.$data, this.$el);
+    console.log("created", this.$data, this.$el); //proxy, null
   },
 
   /*  beforeMount Se llama cuando el componente ha sido montado, pero no existen nodos en el DOM aún, pero están a punto de ser ejecutado el render el DOM por primera vez, no se llama su usamos renderizado del lado de servidor. */
 
   beforeMount() {
     //lógica  a ejecutar
-    console.log("beforeMount", this.$data, this.$el);
+    console.log("beforeMount", this.$data, this.$el); //proxy, null
   },
 
   /* mounted Se llama cuando el componente ha sido montado, se considera montado cuando: todos sus componentes hijos síncronos han sido montados, no se incluyen los asíncronos o los que estén en modo suspendido < Suspense > , cuando su propio árbol del DOM ha sido creado e insertado en su contenedor padre.Tampoco es llamado durante renderizado del lado del servidor */
 
   mounted() {
     //logica a ejecutar
-    console.log("mounted", this.$data, this.$el);
+    console.log("mounted", this.$data, this.$el); //proxy, Elemento
   },
 
   /*  beforeUpdate Se llama justo cuando el componente esta por actualizar su árbol del DOM, debido a un cambio reactivo.Este hook se puede usar para acceder al DOM justo cuando Vue esta por hacer un cambio.
