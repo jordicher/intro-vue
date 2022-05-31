@@ -11,4 +11,12 @@ module.exports = {
   env: {
     "vue/setup-compiler-macros": true,
   },
+  overrides: [
+    {
+      files: ["src/components/**/*.vue"],
+      rules: {
+        "vue/multi-word-component-names": 0,
+      },
+    },
+  ],
 };
