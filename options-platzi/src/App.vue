@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, provide } from "vue";
 import Menu from "./components/Menu.vue";
 import Modal from "./components/Modal.vue";
 import base from "@/mixins/base"; //arroba es para iniciar desde la carpeta src
@@ -47,6 +47,9 @@ export default {
     Home,
   },
   mixins: [base],
+  setup() {
+    provide("username", "jordi cher"); //podria ser una variable reactiva con ref.
+  },
   data() {
     return {
       helloWorld: HelloWorld,
