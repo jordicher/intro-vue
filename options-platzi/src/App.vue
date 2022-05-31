@@ -16,6 +16,8 @@
   </nav>
 
   <div>{{ baseUrl }}</div>
+  <Home first-name="Jordi" last-name="Cher" other="otro" />
+
   <!-- En caso de que la variable estuviera en el mixin y en el componente, cogeria la del componente -->
 
   <Modal />
@@ -30,6 +32,7 @@ import { defineAsyncComponent } from "vue";
 import Menu from "./components/Menu.vue";
 import Modal from "./components/Modal.vue";
 import base from "@/mixins/base"; //arroba es para iniciar desde la carpeta src
+import Home from "./components/Home.vue";
 
 const HelloWorld = defineAsyncComponent(() =>
   import("./components/HelloWorld.vue")
@@ -41,6 +44,7 @@ export default {
     HelloWorld,
     Menu,
     Modal,
+    Home,
   },
   mixins: [base],
   data() {
