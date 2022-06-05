@@ -7,7 +7,7 @@ const Home = defineAsyncComponent(() => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(import("./components/Home.vue"));
-    }, 5000);
+    }, 1000);
   });
 });
 </script>

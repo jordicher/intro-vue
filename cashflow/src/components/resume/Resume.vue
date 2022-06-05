@@ -1,6 +1,47 @@
 <template>
-  <div>Resume</div>
+  <main>
+    <p>{{ labelVisual }}</p>
+    <h1>{{ amountCurrency }}</h1>
+    <div class="graphic">
+      <slot name="graphic"></slot>
+    </div>
+    <div class="action">
+      <slot name="action"></slot>
+    </div>
+  </main>
 </template>
+
+<script setup>
+import { computed } from "vue";
+const props = defineProps({
+  label: String,
+  amount: Number,
+  totalAmount: {
+    type: Number,
+    default: 0,
+  },
+  date: {
+    type: Date,
+  },
+});
+
+const amountVisual = computed(() => {
+  const { amount, totalAmount } = props;
+  return totalAmount ?? amount;
+});
+
+const labelVisual = computed(() => {
+  const { label, date } = props;
+  return date ?? label;
+});
+
+const amountCurrency = computed(() =>
+  new Intl.NumberFormat("es-ES", {
+    style: "currency",
+    currency: "EUR",
+  }).format(amountVisual.value)
+);
+</script>
 
 <style scoped>
 main {
