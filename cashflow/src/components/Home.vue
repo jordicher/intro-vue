@@ -11,7 +11,7 @@
         :date="date"
       >
         <template #graphic>
-          <div></div>
+          <Graphic :amounts="amounts" />
         </template>
 
         <template #action>
@@ -31,8 +31,10 @@ import Header from "./Header.vue";
 import Resume from "./resume/Resume.vue";
 import Movements from "./movements/Movements.vue";
 import Action from "./Action.vue";
+import Graphic from "./resume/Graphic.vue";
 
 const amount = null;
+const amounts = [100, 200, 500, 200, -400, -600, -300, 0, 300, 500];
 const date = new Date().toDateString();
 
 const movements = [
